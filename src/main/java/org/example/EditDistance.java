@@ -110,4 +110,44 @@ public class EditDistance {
     }
 
 
+    public void allinea(String X, String Y, int[][] M ){
+
+        int m = X.length();
+        int n = Y.length();
+
+
+        StringBuilder ALX = new StringBuilder();
+        StringBuilder ALY = new StringBuilder();
+
+        while(m>0 || n>0){
+
+            if(m>0 && n>0 && (M[m][n] == M[m-1][n-1])){        //corrispondenaza o sostituzione
+
+                ALX.insert(0,X.charAt(m-1));
+                ALY.insert(0,Y.charAt(n-1));
+                m--;
+                n--;
+            }
+            else if(m>0 && M[m][n]== M[m-1][n] + 1){     //cancellazione
+                 ALX.insert(0,(X.charAt(m-1)));
+                 ALY.insert(0,"_");
+                m--;
+
+
+
+            }
+            else{
+                ALX.insert(0,"_");
+                ALY.insert(0,Y.charAt(n-1));
+
+                n--;
+
+
+            }
+        }
+        System.out.println(ALX);
+        System.out.print(ALY);
+    }
+
+
 }
